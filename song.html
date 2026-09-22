@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#092f40">
+<meta name="description" content="TAKORUのオリジナルソング。音楽を聴きながらTAKORUの世界を楽しもう。">
+<title>タコルソング｜TAKORU</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header"><nav class="nav" aria-label="メインメニュー"><a class="brand" href="index.html">TAK<span>O</span>RU</a><div class="links"><a href="index.html#menu">メニュー</a><a href="index.html#schedule">出店情報</a><a href="song.html" aria-current="page">🎧 タコルソング</a><a href="index.html#about">TAKORUについて</a></div></nav></header>
+<main class="song-main">
+<section class="song-hero"><span class="eyebrow">TAKORU ORIGINAL SONG</span><div class="song-icon" aria-hidden="true">♪</div><h1>TAKORU テーマソング</h1><p>たこ焼きといっしょに、楽しい音をどうぞ。</p><div class="song-player"><p id="play-status" aria-live="polite">🎧 ページを開くと再生を試みます</p><button class="song-play-button" id="play-button" type="button">▶ 曲を聴く</button><audio id="takoru-audio" controls autoplay preload="auto" src="audio/takoru-song.mp3">お使いのブラウザでは音楽を再生できません。</audio></div></section>
+<section class="song-lyrics" aria-labelledby="lyrics-title"><span class="eyebrow">LYRICS</span><h2 id="lyrics-title">歌詞</h2><div class="lyrics-text"><p>街中に聞こえてる 鉄板のリズムが<br>なんだか幸せな匂いに足が止まるよ<br>まんまる大きな幸せは<br>今日は君のおなかの中<br>急ぎ足でも 火傷にはご注意を</p><p>きみの好きな味をさがして<br>ほらみんなで分けたらハッピーデー<br>楽しみな時間がはじまるよ</p><p>たこ焼き 魔法みたい<br>アツアツの夢みんなで分けて<br>パクパクいただきます<br>"外カリ中ふわ"が合言葉さ<br>たこ焼き 魔法みたい<br>アツアツの夢ぼくに聞かせて<br>パクパクいただきます<br>"外カリ中ふわ"が合言葉さ</p><p>長崎にひろがる きらめく笑顔が<br>ソースの香りに誘われこころおどるよ<br>まんまる大きな幸せは<br>明日も君のおなかの中<br>寄り道しても終電にはご注意を</p><p>諏訪神社の角を曲がれば<br>ほら今日はまたとないラッキーデー<br>しあわせが街に溢れてく</p><p>たこ焼き 魔法みたい<br>アツアツの夢みんなで分けて<br>パクパクいただきます<br>"外カリ中ふわ"が合言葉さ<br>たこ焼き 魔法みたい<br>アツアツの夢ぼくに聞かせて<br>パクパクいただきます<br>"外カリ中ふわ"が合言葉さ</p></div></section>
+<div class="song-return"><a class="btn" href="index.html">TAKORUのトップへ戻る ↗</a><p><a href="https://www.instagram.com/takoru0808/" target="_blank" rel="noopener noreferrer">Instagramで出店情報を見る ↗</a></p></div>
+</main><footer class="footer"><strong>TAKORU</strong><small>© TAKORU</small></footer>
+<script>
+const song = document.getElementById('takoru-audio');
+const playButton = document.getElementById('play-button');
+const playStatus = document.getElementById('play-status');
+function updatePlayback() {
+  playButton.textContent = song.paused ? '▶ 曲を聴く' : 'Ⅱ 一時停止';
+  playStatus.textContent = song.paused ? '🎧 ボタンを押して聴いてね' : '♪ TAKORU テーマソングを再生中';
+}
+playButton.addEventListener('click', async () => {
+  if (song.paused) { try { await song.play(); } catch { playStatus.textContent = '再生できませんでした。下の再生バーからお試しください。'; } }
+  else song.pause();
+  updatePlayback();
+});
+song.addEventListener('play', updatePlayback);
+song.addEventListener('pause', updatePlayback);
+song.play().catch(updatePlayback);
+</script>
+</body></html>
